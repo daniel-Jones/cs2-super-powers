@@ -39,11 +39,12 @@ public class Phoenix : BasePower
         }
 
         Server.NextFrame(() =>
-        {
-            _phoenixUses.Add(player!);
-            player!.MaxHealth = 120;
-            player.Health = 120;
-            player.Respawn();
+        {            
+            var newHealth = 120;
+            SetPlayerHealth(player!, newHealth);
+            player!.Respawn();
+            _phoenixUses.Add(player);
+
             player.PrintToChat($"{ChatColors.DarkRed}Phoenix {ChatColors.Green}rises.");
         });
 
@@ -62,11 +63,21 @@ public class Phoenix : BasePower
 
             Server.NextFrame(() =>
             {
-                player!.MaxHealth = 50;
-                player.Health = 50;
+                SetPlayerHealth(player!, 50);
             });
         }
 
         return HookResult.Continue;
+    }
+
+    private void SetPlayerHealth(CCSPlayerController player, int health)
+    {
+        var pawn = player!.Pawn.Value;
+        pawn!.MaxHealth = health;
+        pawn.Health = health;
+        player.MaxHealth = health;
+        player.Health = health;
+
+        Utilities.SetStateChanged(pawn, "CBaseEntity", "m_iHealth");
     }
 }
