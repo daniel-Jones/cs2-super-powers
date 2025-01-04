@@ -14,7 +14,7 @@ public class ArmBreaker : BasePower
     
     public override char ChatColor => ChatColors.LightBlue;
     
-    private readonly Random _random = new Random();
+    private readonly Random _random = new();
 
     public override string HtmlColor => "#D6E6FF";
     protected override void OnInitialize()

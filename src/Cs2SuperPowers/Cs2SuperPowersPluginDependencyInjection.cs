@@ -21,6 +21,8 @@ public class Cs2SuperPowersPluginDependencyInjection : IPluginServiceCollection<
         services.AddScoped<ISuperPower, IAmChicken>();
         services.AddScoped<ISuperPower, OneShot>();
         services.AddScoped<ISuperPower, Vampire>();
+        services.AddScoped<ISuperPower, Twister>();
+        services.AddScoped<ISuperPower, PowerThief>();
         
         services.AddScoped<IPowerAssignLogic, RandomAssignLogic>();
     }

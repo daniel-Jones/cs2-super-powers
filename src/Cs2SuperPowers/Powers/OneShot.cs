@@ -28,16 +28,11 @@ public class OneShot : BasePower
         var param = h.GetParam<CEntityInstance>(0);
         var param2 = h.GetParam<CTakeDamageInfo>(1);
 
-        if (param == null || param2 == null || param2.Attacker == null)
-        {
-            return HookResult.Continue;
-        }
-
-        var attackerPawn = new CCSPlayerPawn(param2.Attacker.Value.Handle);
+        var attackerPawn = new CCSPlayerPawn(param2.Attacker.Value!.Handle);
         var victimPawn = new CCSPlayerPawn(param.Handle);
 
-        if (attackerPawn == null || attackerPawn.Controller?.Value == null || victimPawn == null ||
-            victimPawn.Controller?.Value == null)
+        if (attackerPawn.Controller.Value == null ||
+            victimPawn.Controller.Value == null)
         {
             return HookResult.Continue;
         }

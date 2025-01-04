@@ -39,17 +39,8 @@ public class Rambo : BasePower
                 player.GiveNamedItem("weapon_negev");
                 player.GiveNamedItem("item_assaultsuit");
                 player.GiveNamedItem("weapon_hegrenade");
-                
-                var pawn = player.PlayerPawn?.Value;
-                if (pawn == null) return;
 
-                player.MaxHealth = newHealth;
-                pawn.MaxHealth = newHealth;
-
-                player.Health = newHealth;
-                pawn.Health = newHealth;
-            
-                Utilities.SetStateChanged(pawn, "CBaseEntity", "m_iHealth");
+                player.SetNewHealth(newHealth);
             });
         }
 

@@ -41,7 +41,7 @@ public class Phoenix : BasePower
         Server.NextFrame(() =>
         {            
             var newHealth = 120;
-            SetPlayerHealth(player!, newHealth);
+            player!.SetNewHealth(newHealth);
             player!.Respawn();
             _phoenixUses.Add(player);
 
@@ -63,21 +63,10 @@ public class Phoenix : BasePower
 
             Server.NextFrame(() =>
             {
-                SetPlayerHealth(player!, 50);
+                player.SetNewHealth(50);
             });
         }
 
         return HookResult.Continue;
-    }
-
-    private void SetPlayerHealth(CCSPlayerController player, int health)
-    {
-        var pawn = player!.Pawn.Value;
-        pawn!.MaxHealth = health;
-        pawn.Health = health;
-        player.MaxHealth = health;
-        player.Health = health;
-
-        Utilities.SetStateChanged(pawn, "CBaseEntity", "m_iHealth");
     }
 }
