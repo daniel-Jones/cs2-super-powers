@@ -1,5 +1,6 @@
 using CounterStrikeSharp.API;
 using CounterStrikeSharp.API.Core;
+using CounterStrikeSharp.API.Core.Attributes;
 using CounterStrikeSharp.API.Modules.Utils;
 using Cs2SuperPowers.Players;
 
@@ -18,11 +19,11 @@ public class BlindingLight(IPlayerHud playerHud) : BasePower(playerHud)
 
     private readonly List<BlindingLightInfo> _registrations = new();
 
-    private const int SecondsBetweenActivations = 60;
+    private const int SecondsBetweenActivations = 15;
     
     protected override void OnInitialize()
     {
-        RegisterListener(OnTick);
+        RegisterListener<Listeners.OnTick>(OnTick);
         RegisterEventHandler<EventRoundFreezeEnd>(OnRoundFreezeEnd);
         RegisterEventHandler<EventPlayerDeath>(OnPlayerDeath);
     }
@@ -59,7 +60,7 @@ public class BlindingLight(IPlayerHud playerHud) : BasePower(playerHud)
             {
                 ActivatePower(registration);
             }
-            else if (!canUsePower)
+            else if (!canUsePower && usePressed)
             {
                 var secondsBeforeNextUse =
                     SecondsBetweenActivations - (int)(DateTime.UtcNow - registration.LastUse).TotalSeconds;
