@@ -1,5 +1,4 @@
 using System.Text;
-using CounterStrikeSharp.API;
 using CounterStrikeSharp.API.Core;
 using CounterStrikeSharp.API.Modules.Events;
 using Cs2SuperPowers.Players;
@@ -48,6 +47,11 @@ public abstract class BasePower(IPlayerHud playerHud) : ISuperPower
         where T : GameEvent
     {
         Plugin!.RegisterEventHandler(handler, hookMode);
+    }
+    
+    protected void RegisterListener<T>(T handler) where T : Delegate 
+    {
+        Plugin!.RegisterListener(handler);
     }
 
     protected bool IsAssignedTo(CCSPlayerController player)
