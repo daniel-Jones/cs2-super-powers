@@ -5,7 +5,7 @@ using Cs2SuperPowers.Players.PlayerValidations;
 
 namespace Cs2SuperPowers.Powers;
 
-public class Twister : BasePower
+public class Twister(IPlayerHud playerHud) : BasePower(playerHud)
 {
     public override int Id => 14;
     public override string Name => "Twister";

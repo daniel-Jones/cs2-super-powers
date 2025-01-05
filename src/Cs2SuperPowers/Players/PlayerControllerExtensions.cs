@@ -28,8 +28,8 @@ public static class PlayerControllerExtensions
         player.MaxHealth = maxHealth;
         pawn.MaxHealth = maxHealth;
 
-        player.Health = Math.Max(maxHealth, player.Health);
-        pawn.Health = Math.Max(maxHealth, pawn.Health);;
+        player.Health = Math.Min(maxHealth, player.Health);
+        pawn.Health = Math.Min(maxHealth, pawn.Health);;
             
         Utilities.SetStateChanged(pawn, "CBaseEntity", "m_iHealth");
         return player;

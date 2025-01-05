@@ -6,12 +6,12 @@ using Cs2SuperPowers.Players.PlayerValidations;
 
 namespace Cs2SuperPowers.Powers;
 
-public class Jackpot : BasePower
+public class Jackpot(IPlayerHud playerHud) : BasePower(playerHud)
 {
     public override int Id => 9;
     public override string Name => "Jackpot";
     
-    public override string Description => $"Begin each round with a random cash bonus, giving you an unpredictable economic advantage over your enemies.";
+    public override string Description => $"Begin this round with a random cash bonus, giving you an unpredictable economic advantage over your enemies.";
     
     public override char ChatColor => ChatColors.Yellow;
 

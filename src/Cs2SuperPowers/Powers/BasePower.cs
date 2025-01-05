@@ -2,10 +2,11 @@ using System.Text;
 using CounterStrikeSharp.API;
 using CounterStrikeSharp.API.Core;
 using CounterStrikeSharp.API.Modules.Events;
+using Cs2SuperPowers.Players;
 
 namespace Cs2SuperPowers.Powers;
 
-public abstract class BasePower : ISuperPower
+public abstract class BasePower(IPlayerHud playerHud) : ISuperPower
 {
     private readonly HashSet<ulong> _playerIds = new();
 
@@ -32,9 +33,10 @@ public abstract class BasePower : ISuperPower
         player.PrintToChat(Description);
 
         var centerMessageBuilder = new StringBuilder();
-        centerMessageBuilder.Append("<font class='fontSize-l' class='fontWeight-Bold' color='#FFFFFF'>Your super power:</font> <br>");
+        centerMessageBuilder.Append("<font class='fontSize-l' class='fontWeight-Bold' color='#FFFFFF'>Your superpower:</font> <br>");
         centerMessageBuilder.Append($"<font class='fontSize-l' class='fontWeight-Bold' color='{HtmlColor}'>{Name}</font> <br>");
-        Server.NextFrame(() => player.PrintToCenterHtml(centerMessageBuilder.ToString(), 60 * 60 * 1000));
+        centerMessageBuilder.Append($"<font class='fontSize-s' class='fontWeight-Normal' color='#FFFFFF'>{Description}</font> <br>");
+        playerHud.ShowMessage(player, centerMessageBuilder.ToString(), TimeSpan.FromSeconds(10));
     }
 
     public virtual void UnassignFromPlayer(CCSPlayerController player)

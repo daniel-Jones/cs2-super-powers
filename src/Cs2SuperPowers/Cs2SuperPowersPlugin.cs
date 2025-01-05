@@ -1,10 +1,11 @@
 ﻿using CounterStrikeSharp.API.Core;
+using Cs2SuperPowers.Players;
 using Cs2SuperPowers.Powers.Assign;
 using Microsoft.Extensions.Logging;
 
 namespace Cs2SuperPowers;
 
-public class Cs2SuperPowersPlugin(IEnumerable<ISuperPower> superPowers, IPowerAssignLogic powerAssignLogic) : BasePlugin
+public class Cs2SuperPowersPlugin(IEnumerable<ISuperPower> superPowers, IPowerAssignLogic powerAssignLogic, IPlayerHud playerHud) : BasePlugin
 {
     public override string ModuleName => "Cs2SuperPowersPlugin";
     public override string ModuleVersion => "0.1.0";
@@ -23,6 +24,7 @@ public class Cs2SuperPowersPlugin(IEnumerable<ISuperPower> superPowers, IPowerAs
             superPower.Initialize(this);
             Logger.LogInformation("Finished Initializing SuperPower {Name}", superPower.Name);
         }
+        playerHud.Initialize(this);
         powerAssignLogic.Initialize(this, _superPowers);
         Logger.LogInformation("Finished loading {ModuleName} with HotReload = {HotReload}", ModuleName, hotReload);
     }

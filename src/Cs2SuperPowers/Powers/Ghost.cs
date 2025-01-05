@@ -7,7 +7,7 @@ using Cs2SuperPowers.Players.PlayerValidations;
 
 namespace Cs2SuperPowers.Powers;
 
-public class Ghost : BasePower
+public class Ghost(IPlayerHud playerHud) : BasePower(playerHud)
 {
     public override int Id => 7;
     public override string Name => "The Ghost";
@@ -62,6 +62,15 @@ public class Ghost : BasePower
         return HookResult.Continue;
     }
 
+    public override void UnassignFromPlayer(CCSPlayerController player)
+    {
+        base.UnassignFromPlayer(player);
+        Server.NextFrame(() =>
+        {
+            SetPlayerVisibility(player, true);
+        });
+    }
+
     private HookResult OnPlayerHurt(EventPlayerHurt @event, GameEventInfo info)
     {
         var attacker = @event.Attacker;
@@ -95,6 +104,11 @@ public class Ghost : BasePower
     
     private void SetPlayerVisibility(CCSPlayerController player, bool visible)
     {
+        if (!IsAssignedTo(player) && !visible)
+        {
+            return;
+        }
+        
         var playerPawn = player.PlayerPawn.Value;
         if (playerPawn != null)
         {

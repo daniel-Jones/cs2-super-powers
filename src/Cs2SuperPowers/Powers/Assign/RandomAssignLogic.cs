@@ -23,6 +23,17 @@ public class RandomAssignLogic : IPowerAssignLogic
 
         pluginRef.RegisterEventHandler<EventRoundFreezeEnd>((_, _) =>
         {
+            var gameRules = Utilities
+                .FindAllEntitiesByDesignerName<CBaseEntity>("cs_gamerules")
+                .Single()
+                .As<CCSGameRulesProxy>()
+                .GameRules!;
+            
+            if (gameRules.WarmupPeriod)
+            {
+                return HookResult.Continue;
+            }
+            
             var random = new Random();            
             foreach (var player in Utilities.GetPlayers())
             {

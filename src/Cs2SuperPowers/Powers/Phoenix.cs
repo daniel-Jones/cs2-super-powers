@@ -6,7 +6,7 @@ using Cs2SuperPowers.Players.PlayerValidations;
 
 namespace Cs2SuperPowers.Powers;
 
-public class Phoenix : BasePower
+public class Phoenix(IPlayerHud playerHud) : BasePower(playerHud)
 {
     public override int Id => 2;
     public override string Name => "Phoenix Rising";

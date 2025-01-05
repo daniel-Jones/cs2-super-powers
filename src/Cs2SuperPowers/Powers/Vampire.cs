@@ -6,7 +6,7 @@ using Cs2SuperPowers.Players.PlayerValidations;
 
 namespace Cs2SuperPowers.Powers;
 
-public class Vampire : BasePower
+public class Vampire(IPlayerHud playerHud) : BasePower(playerHud)
 {
     public override int Id => 12;
     public override string Name => "Vampire";

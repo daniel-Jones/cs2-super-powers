@@ -5,7 +5,7 @@ using Cs2SuperPowers.Players.PlayerValidations;
 
 namespace Cs2SuperPowers.Powers;
 
-public class BulletStorm : BasePower
+public class BulletStorm(IPlayerHud playerHud) : BasePower(playerHud)
 {
     public override int Id => 13;
     public override string Name => "Bullet Storm";

@@ -5,7 +5,7 @@ using Cs2SuperPowers.Players.PlayerValidations;
 
 namespace Cs2SuperPowers.Powers;
 
-public class ArmBreaker : BasePower
+public class ArmBreaker(IPlayerHud playerHud) : BasePower(playerHud)
 {
     public override int Id => 6;
     public override string Name => "Arms Breaker";

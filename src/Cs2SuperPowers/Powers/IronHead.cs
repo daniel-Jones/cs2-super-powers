@@ -6,7 +6,7 @@ using Cs2SuperPowers.Players.PlayerValidations;
 
 namespace Cs2SuperPowers.Powers;
 
-public class IronHead : BasePower
+public class IronHead(IPlayerHud playerHud) : BasePower(playerHud)
 {
     public override int Id => 4;
     public override string Name => "Iron Head";

@@ -6,7 +6,7 @@ using Cs2SuperPowers.Players.PlayerValidations;
 
 namespace Cs2SuperPowers.Powers;
 
-public class RiseFromTheDead : BasePower
+public class RiseFromTheDead(IPlayerHud playerHud) : BasePower(playerHud)
 {
     public override int Id => 1;
     public override string Name => "Rise From the Dead";

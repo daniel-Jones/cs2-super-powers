@@ -7,7 +7,7 @@ using Cs2SuperPowers.Players.PlayerValidations;
 
 namespace Cs2SuperPowers.Powers;
 
-public class IAmChicken : BasePower
+public class IAmChicken(IPlayerHud playerHud) : BasePower(playerHud)
 {
     public override int Id => 10;
     public override string Name => "I Am Chicken!";
@@ -44,11 +44,10 @@ public class IAmChicken : BasePower
                 SetPlayerModel(player, "models/chicken/chicken.vmdl");
                 playerPawn!.CBodyComponent!.SceneNode!.GetSkeletonInstance().MaterialGroup.Value =
                     (uint)random.Next(1, 4);
-                playerPawn.VelocityModifier = 0.2f;
-                Utilities.SetStateChanged(player, "CCSPlayerPawn", "m_flVelocityModifier");
+                
                 playerPawn.MaxHealth = 30;
                 playerPawn.Health = 30;
-                Utilities.SetStateChanged(player, "CCSPlayerPawn", "m_iMaxHealth");
+                Utilities.SetStateChanged(player, "CCSPlayerPawn", "m_iMaxHealth");                
             });
         }
 
@@ -64,7 +63,7 @@ public class IAmChicken : BasePower
         {
             pawn.SetModel(model);
 
-            Color originalRender = pawn.Render;
+            var originalRender = pawn.Render;
             pawn.Render = Color.FromArgb(255, originalRender.R, originalRender.G, originalRender.B);
         });
     }

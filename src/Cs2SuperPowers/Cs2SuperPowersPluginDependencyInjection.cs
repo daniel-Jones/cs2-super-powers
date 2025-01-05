@@ -1,4 +1,5 @@
 using CounterStrikeSharp.API.Core;
+using Cs2SuperPowers.Players;
 using Cs2SuperPowers.Powers;
 using Cs2SuperPowers.Powers.Assign;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,5 +26,6 @@ public class Cs2SuperPowersPluginDependencyInjection : IPluginServiceCollection<
         services.AddScoped<ISuperPower, PowerThief>();
         
         services.AddScoped<IPowerAssignLogic, RandomAssignLogic>();
+        services.AddScoped<IPlayerHud, PlayerHud>();
     }
 }

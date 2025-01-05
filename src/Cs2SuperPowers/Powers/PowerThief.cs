@@ -5,7 +5,7 @@ using Cs2SuperPowers.Players.PlayerValidations;
 
 namespace Cs2SuperPowers.Powers;
 
-public class PowerThief : BasePower
+public class PowerThief(IPlayerHud playerHud) : BasePower(playerHud)
 {
     public override int Id => 15;
     public override string Name => "Power Thief";

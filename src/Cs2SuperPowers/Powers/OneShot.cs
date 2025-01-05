@@ -7,7 +7,7 @@ using Cs2SuperPowers.Players.PlayerValidations;
 
 namespace Cs2SuperPowers.Powers;
 
-public class OneShot : BasePower
+public class OneShot(IPlayerHud playerHud) : BasePower(playerHud)
 {
     public override int Id => 11;
     public override string Name => "One Shot";
