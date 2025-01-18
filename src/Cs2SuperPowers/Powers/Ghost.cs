@@ -129,6 +129,9 @@ public class Ghost(IPlayerHud playerHud) : BasePower(playerHud)
                 Utilities.SetStateChanged(activeWeapon, "CBaseModelEntity", "m_clrRender");
             }
 
+            playerPawn!.CBodyComponent!.SceneNode!.GetSkeletonInstance().MaterialGroup.Value 
+                    = visible ? (uint)0 : 1;
+
             var myWeapons = playerPawn.WeaponServices?.MyWeapons;
             if (myWeapons != null)
             {

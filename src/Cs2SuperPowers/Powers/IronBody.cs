@@ -1,4 +1,3 @@
-using CounterStrikeSharp.API;
 using CounterStrikeSharp.API.Core;
 using CounterStrikeSharp.API.Modules.Utils;
 using Cs2SuperPowers.Players;
@@ -6,12 +5,12 @@ using Cs2SuperPowers.Players.PlayerValidations;
 
 namespace Cs2SuperPowers.Powers;
 
-public class IronHead(IPlayerHud playerHud) : BasePower(playerHud)
+public class IronBody(IPlayerHud playerHud) : BasePower(playerHud)
 {
-    public override int Id => 4;
-    public override string Name => "Iron Head";
+    public override int Id => 18;
+    public override string Name => "Iron Body";
     
-    public override string Description => $"You cannot be killed by head shots.";
+    public override string Description => $"You can only be killed by headshots.";
     
     public override char ChatColor => ChatColors.LightPurple;
 
@@ -26,7 +25,7 @@ public class IronHead(IPlayerHud playerHud) : BasePower(playerHud)
     {
         var attacker = @event.Attacker;
         var victim = @event.Userid;
-        if (@event.Hitgroup != (int)HitGroup_t.HITGROUP_HEAD)
+        if (@event.Hitgroup == (int)HitGroup_t.HITGROUP_HEAD)
         {
             return HookResult.Continue;
         }

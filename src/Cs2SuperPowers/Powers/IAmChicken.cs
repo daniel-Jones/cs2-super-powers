@@ -46,7 +46,7 @@ public class IAmChicken(IPlayerHud playerHud) : BasePower(playerHud)
                     (uint)random.Next(1, 4);
                 
                 playerPawn.MaxHealth = 30;
-                playerPawn.Health = 30;
+                playerPawn.Health = 30;                
                 Utilities.SetStateChanged(player, "CCSPlayerPawn", "m_iMaxHealth");                
             });
         }
@@ -61,9 +61,8 @@ public class IAmChicken(IPlayerHud playerHud) : BasePower(playerHud)
 
         Server.NextFrame(() =>
         {
-            pawn.SetModel(model);
-
-            var originalRender = pawn.Render;
+            pawn.SetModel(model);            
+            var originalRender = pawn.Render;            
             pawn.Render = Color.FromArgb(255, originalRender.R, originalRender.G, originalRender.B);
         });
     }
