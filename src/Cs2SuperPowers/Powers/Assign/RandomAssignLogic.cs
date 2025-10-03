@@ -21,7 +21,7 @@ public class RandomAssignLogic : IPowerAssignLogic
         });
 
 
-        pluginRef.RegisterEventHandler<EventRoundFreezeEnd>((_, _) =>
+        pluginRef.RegisterEventHandler<EventRoundStart>((_, _) =>
         {
             var gameRules = Utilities
                 .FindAllEntitiesByDesignerName<CBaseEntity>("cs_gamerules")
