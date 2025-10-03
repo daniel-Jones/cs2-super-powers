@@ -34,4 +34,21 @@ public static class PlayerControllerExtensions
         Utilities.SetStateChanged(pawn, "CBaseEntity", "m_iHealth");
         return player;
     }
+
+    public static float GetSpeed(this CCSPlayerController player)
+    {
+        var pawn = player.PlayerPawn.Value;
+        if (pawn == null) return 1.0f;
+        return pawn.VelocityModifier;
+    }
+
+    public static CCSPlayerController SetNewSpeed(this CCSPlayerController player, float speed)
+    {
+        var pawn = player.PlayerPawn.Value;
+        if (pawn == null) return player;
+
+        pawn.VelocityModifier = speed;
+        Utilities.SetStateChanged(pawn, "CCSPlayer_MovementServices", "m_flVelocityModifier");
+        return player;
+    }
 }
