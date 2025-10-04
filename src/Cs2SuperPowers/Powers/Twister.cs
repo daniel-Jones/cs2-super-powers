@@ -47,14 +47,13 @@ public class Twister(IPlayerHud playerHud) : BasePower(playerHud)
     private void RotateEnemy(CCSPlayerController player)
     {
         var currentPosition = player.PlayerPawn.Value!.AbsOrigin;
-        var currentAngles = player.PlayerPawn.Value.EyeAngles;
+        var currentAngles = player.PlayerPawn.Value.V_angle;
 
         var newAngles = new QAngle(
             currentAngles.X,
-            currentAngles.Y + 180,
+            currentAngles.Y + _random.Next(-180, 180),
             currentAngles.Z
         );
-
         player.PlayerPawn.Value.Teleport(currentPosition, newAngles, new Vector(0, 0, 0));
     }
 }
