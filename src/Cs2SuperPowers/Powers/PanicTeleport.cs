@@ -42,6 +42,7 @@ public class PanicTeleport(IPlayerHud playerHud) : BasePower(playerHud)
 
     private HookResult OnRoundStart(EventRoundStart @event, GameEventInfo info)
     {
+        _registrations.Clear();
         foreach (var player in PlayerPowers.Instance.GetPlayersWithPower(this))
         {
             _registrations.Add(new PanicTeleportInfo(player, null));
