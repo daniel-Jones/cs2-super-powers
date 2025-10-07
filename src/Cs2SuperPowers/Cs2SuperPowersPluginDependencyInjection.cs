@@ -35,8 +35,8 @@ public class Cs2SuperPowersPluginDependencyInjection : IPluginServiceCollection<
         services.AddScoped<ISuperPower, GrenadeLauncher>();
         services.AddScoped<ISuperPower, AirStrike>(); 
         services.AddScoped<ISuperPower, NotSoDecoy>(); 
+        services.AddScoped<ISuperPower, PanicTeleport>(); 
         //
-        //services.AddScoped<ISuperPower, Ghost>();
         services.AddScoped<IPowerAssignLogic, RandomAssignLogic>();
         services.AddScoped<IPlayerHud, PlayerHud>();
     }
