@@ -3,7 +3,7 @@ using CounterStrikeSharp.API.Core;
 using CounterStrikeSharp.API.Modules.Utils;
 using Cs2SuperPowers.Players;
 using Cs2SuperPowers.Players.PlayerValidations;
-using CounterStrikeSharp.API.Modules.Memory.DynamicFunctions;
+using Cs2SuperPowers.Utils;
 
 namespace Cs2SuperPowers.Powers;
 
@@ -24,10 +24,6 @@ public class NotSoDecoy(IPlayerHud playerHud) : BasePower(playerHud)
         RegisterEventHandler<EventDecoyDetonate>(OnDecoyDetonate);
     }
 
-    public static MemoryFunctionWithReturn<IntPtr, IntPtr, IntPtr, IntPtr, IntPtr, int, CHEGrenadeProjectile>
-    CHEGrenadeProjectile_CreateFunc = new(
-    "55 4C 89 C1 48 89 E5 41 57 49 89 FF 41 56 49 89 D6"
-    );
 
     private HookResult OnRoundStart(EventRoundStart @event, GameEventInfo _)
     {
@@ -90,14 +86,7 @@ public class NotSoDecoy(IPlayerHud playerHud) : BasePower(playerHud)
                 forward.Z * speed + upward
             );
 
-            CBaseCSGrenadeProjectile? createdGrenade = null;
-            createdGrenade = CHEGrenadeProjectile_CreateFunc.Invoke(
-                pos.Handle,
-                ang.Handle,
-                velocity.Handle,
-                velocity.Handle,
-                IntPtr.Zero,
-                44);
+            var createdGrenade = GrenadeSpawner.CreateGrenade(pos, ang, velocity);
         }
         return HookResult.Continue;
     }
