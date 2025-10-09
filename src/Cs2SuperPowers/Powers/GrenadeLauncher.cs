@@ -79,7 +79,7 @@ private HookResult OnWeaponFire(EventWeaponFire @event, GameEventInfo info)
         forward.Z * speed + 200f
     );
 
-    var createdGrenade = GrenadeSpawner.CreateGrenade(pos, ang, velocity);
+    var createdGrenade = GrenadeSpawner.CreateGrenadeWithOwner(pos, ang, velocity, controller!);
     
     return HookResult.Continue;
 }

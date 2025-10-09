@@ -10,6 +10,7 @@ public class Cs2SuperPowersPluginDependencyInjection : IPluginServiceCollection<
 {
     public void ConfigureServices(IServiceCollection services)
     {
+        /*
         services.AddScoped<ISuperPower, RiseFromTheDead>();
         services.AddScoped<ISuperPower, FlashProof>();
         services.AddScoped<ISuperPower, IronHead>();
@@ -36,7 +37,8 @@ public class Cs2SuperPowersPluginDependencyInjection : IPluginServiceCollection<
         services.AddScoped<ISuperPower, AirStrike>(); 
         services.AddScoped<ISuperPower, NotSoDecoy>(); 
         services.AddScoped<ISuperPower, PanicTeleport>(); 
-        
+        */
+        services.AddScoped<ISuperPower, NotSoDecoy>(); 
         //
         services.AddScoped<IPowerAssignLogic, RandomAssignLogic>();
         services.AddScoped<IPlayerHud, PlayerHud>();

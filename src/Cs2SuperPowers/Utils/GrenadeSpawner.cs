@@ -46,4 +46,38 @@ public static class GrenadeSpawner
             return null;
         }
     }
+
+    public static CBaseCSGrenadeProjectile? CreateGrenadeWithOwner(CounterStrikeSharp.API.Modules.Utils.Vector position, CounterStrikeSharp.API.Modules.Utils.QAngle angle, CounterStrikeSharp.API.Modules.Utils.Vector velocity, CCSPlayerController owner)
+    {
+        try
+        {
+            var grenade = CHEGrenadeProjectile_CreateFunc.Invoke(
+                position.Handle,
+                angle.Handle,
+                velocity.Handle,
+                velocity.Handle,
+                IntPtr.Zero,
+                44
+            );
+
+            if (grenade != null && grenade.IsValid)
+            {
+                // Set the team number to match the owner for proper kill attribution
+                grenade.TeamNum = owner.TeamNum;
+                
+                // Set the owner/instigator for kill attribution
+                // This ensures that kills from this grenade are attributed to the owner
+                if (owner.PlayerPawn?.Value != null)
+                {
+                    grenade.AcceptInput("InitializeSpawnFromWorld", owner.PlayerPawn.Value, owner.PlayerPawn.Value, "");
+                }
+            }
+
+            return grenade;
+        }
+        catch
+        {
+            return null;
+        }
+    }
 }

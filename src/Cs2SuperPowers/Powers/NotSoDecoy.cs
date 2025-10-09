@@ -86,7 +86,7 @@ public class NotSoDecoy(IPlayerHud playerHud) : BasePower(playerHud)
                 forward.Z * speed + upward
             );
 
-            var createdGrenade = GrenadeSpawner.CreateGrenade(pos, ang, velocity);
+            var createdGrenade = GrenadeSpawner.CreateGrenadeWithOwner(pos, ang, velocity, player!);
         }
         return HookResult.Continue;
     }
