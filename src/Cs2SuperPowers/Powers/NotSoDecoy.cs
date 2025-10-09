@@ -9,7 +9,7 @@ namespace Cs2SuperPowers.Powers;
 
 public class NotSoDecoy(IPlayerHud playerHud) : BasePower(playerHud)
 {
-    public override int Id => 21;
+    public override int Id => 24;
     public override string Name => "Not So Decoy";
     
     public override string Description => "Decoys thrown by you spawn 20 grenades when it explodes.";

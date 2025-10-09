@@ -8,7 +8,7 @@ namespace Cs2SuperPowers.Powers;
 
 public class BlindingLight(IPlayerHud playerHud) : BasePower(playerHud)
 {
-    public override int Id => 16;
+    public override int Id => 22;
     public override string Name => "Blinding Light";
     
     public override string Description => $"Inflict a blinding flash of light that disorients enemies. Press E (Use) to activate the power.";

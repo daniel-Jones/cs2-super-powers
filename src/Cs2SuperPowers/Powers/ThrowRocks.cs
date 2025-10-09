@@ -8,7 +8,7 @@ namespace Cs2SuperPowers.Powers;
 
 public class ThrowRocks(IPlayerHud playerHud) : BasePower(playerHud)
 {
-    public override int Id => 21;
+    public override int Id => 20;
     public override string Name => "Throw Rocks";
     
     public override string Description => "Spawn with infinite decoys. A direct hit with a decoy instantly kills the victim.";

@@ -36,12 +36,15 @@ public class TeleportOnKill(IPlayerHud playerHud) : BasePower(playerHud)
             return HookResult.Continue;
         }
         
-        if (victim.PlayerPawn?.Value != null && attacker.PlayerPawn?.Value != null)
+        if (victim!.PlayerPawn?.Value != null && attacker!.PlayerPawn?.Value != null)
         {
             var victimPos = victim.PlayerPawn.Value.AbsOrigin;
             // raise Z a bit to avoid getting stuck in the ground
-            victimPos.Z += 10;
-            attacker.PlayerPawn.Value.Teleport(victimPos, null, null);
+            if (victimPos != null)
+            {
+                victimPos.Z += 10;
+                attacker.PlayerPawn.Value.Teleport(victimPos, null, null);
+            }
         }
 
         return HookResult.Continue;

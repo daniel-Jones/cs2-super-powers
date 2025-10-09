@@ -19,10 +19,10 @@ public class Jackpot(IPlayerHud playerHud) : BasePower(playerHud)
     
     protected override void OnInitialize()
     {
-        RegisterEventHandler<EventRoundFreezeEnd>(OnRoundFreezeEnd);
+        RegisterEventHandler<EventRoundStart>(OnRoundStart);
     }
 
-    private HookResult OnRoundFreezeEnd(EventRoundFreezeEnd @event, GameEventInfo _)
+    private HookResult OnRoundStart(EventRoundStart @event, GameEventInfo _)
     {
         var random = new Random();
         foreach (var player in PlayerPowers.Instance.GetPlayersWithPower(this))

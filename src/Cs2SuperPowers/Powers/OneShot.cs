@@ -9,7 +9,7 @@ namespace Cs2SuperPowers.Powers;
 
 public class OneShot(IPlayerHud playerHud) : BasePower(playerHud)
 {
-    public override int Id => 11;
+    public override int Id => 23;
     public override string Name => "One Shot";
     
     public override string Description => $"Instantly eliminate any opponent with a single hit, embodying the ultimate force of lethal precision.";

@@ -8,7 +8,7 @@ namespace Cs2SuperPowers.Powers;
 
 public class GoFast(IPlayerHud playerHud) : BasePower(playerHud)
 {
-    public override int Id => 18;
+    public override int Id => 19;
     public override string Name => "Go Fast";
     
     public override string Description => $"Your movement speed is increased by 50%";
@@ -34,6 +34,7 @@ public class GoFast(IPlayerHud playerHud) : BasePower(playerHud)
             Server.NextFrame(() =>
             {
                 player.SetNewSpeed(player.GetSpeed() * 1.5f);
+                player.GravityScale += 5;
             });
         }
 

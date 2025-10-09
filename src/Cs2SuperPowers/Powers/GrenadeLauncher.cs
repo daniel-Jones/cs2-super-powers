@@ -24,6 +24,7 @@ public class GrenadeLauncher(IPlayerHud playerHud) : BasePower(playerHud)
         RegisterEventHandler<EventWeaponFire>(OnWeaponFire);
     }
 
+// https://github.com/zwolof/cs2-executes/blob/master/Memory.cs https://github.com/zwolof/cs2-executes/blob/master/Managers/GrenadeManager.cs#L65
 public static MemoryFunctionWithReturn<IntPtr, IntPtr, IntPtr, IntPtr, IntPtr, int, CHEGrenadeProjectile>
     CHEGrenadeProjectile_CreateFunc = new(
     "55 4C 89 C1 48 89 E5 41 57 49 89 FF 41 56 49 89 D6"
@@ -44,7 +45,7 @@ private HookResult OnWeaponFire(EventWeaponFire @event, GameEventInfo info)
     {
         "weapon_glock", "weapon_usp_silencer", "weapon_hkp2000", "weapon_p250",
         "weapon_fiveseven", "weapon_tec9", "weapon_cz75a", "weapon_deagle",
-        "weapon_revolver", "weapon_elite"
+        "weapon_revolver", "weapon_elite", "weapon_negev"
     };
 
     if (!pistolClassNames.Contains(weapon.DesignerName))
