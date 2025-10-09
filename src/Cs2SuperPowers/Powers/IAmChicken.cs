@@ -20,10 +20,10 @@ public class IAmChicken(IPlayerHud playerHud) : BasePower(playerHud)
 
     protected override void OnInitialize()
     {
-        RegisterEventHandler<EventRoundFreezeEnd>(OnRoundFreezeEnd);
+        RegisterEventHandler<EventRoundStart>(OnRoundStart);
     }
 
-    private HookResult OnRoundFreezeEnd(EventRoundFreezeEnd @event, GameEventInfo info)
+    private HookResult OnRoundStart(EventRoundStart @event, GameEventInfo info)
     {
         var random = new Random();
         foreach (var player in PlayerPowers.Instance.GetPlayersWithPower(this))

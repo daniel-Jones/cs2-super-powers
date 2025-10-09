@@ -20,11 +20,11 @@ public class FlashKing(IPlayerHud playerHud) : BasePower(playerHud)
 
     protected override void OnInitialize()
     {
-        RegisterEventHandler<EventRoundFreezeEnd>(OnRoundFreezeEnd);
+        RegisterEventHandler<EventRoundStart>(OnRoundStart);
         RegisterEventHandler<EventPlayerBlind>(OnPlayerBlinded);
     }
 
-    private HookResult OnRoundFreezeEnd(EventRoundFreezeEnd @event, GameEventInfo _)
+    private HookResult OnRoundStart(EventRoundStart @event, GameEventInfo _)
     {
         foreach (var player in Utilities.GetPlayers())
         {

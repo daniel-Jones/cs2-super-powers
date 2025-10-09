@@ -21,7 +21,7 @@ public class Ghost(IPlayerHud playerHud) : BasePower(playerHud)
     public override string HtmlColor => "#FFFFFF";
     protected override void OnInitialize()
     {
-        RegisterEventHandler<EventRoundFreezeEnd>(OnRoundFreezeEnd);
+        RegisterEventHandler<EventRoundStart>(OnRoundStart);
         RegisterEventHandler<EventPlayerHurt>(OnPlayerHurt);
         RegisterEventHandler<EventRoundEnd>(OnRoundEnd);
     }
@@ -45,7 +45,7 @@ public class Ghost(IPlayerHud playerHud) : BasePower(playerHud)
         return HookResult.Continue;
     }
 
-    private HookResult OnRoundFreezeEnd(EventRoundFreezeEnd @event, GameEventInfo info)
+    private HookResult OnRoundStart(EventRoundStart @event, GameEventInfo info)
     {
         var validPlayersWithPower = PlayerPowers.Instance
             .GetPlayersWithPower(this)

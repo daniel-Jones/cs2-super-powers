@@ -24,7 +24,7 @@ public class BlindingLight(IPlayerHud playerHud) : BasePower(playerHud)
     protected override void OnInitialize()
     {
         RegisterListener<Listeners.OnTick>(OnTick);
-        RegisterEventHandler<EventRoundFreezeEnd>(OnRoundFreezeEnd);
+        RegisterEventHandler<EventRoundStart>(OnRoundStart);
         RegisterEventHandler<EventPlayerDeath>(OnPlayerDeath);
     }
 
@@ -40,7 +40,7 @@ public class BlindingLight(IPlayerHud playerHud) : BasePower(playerHud)
         return HookResult.Continue;
     }
 
-    private HookResult OnRoundFreezeEnd(EventRoundFreezeEnd @event, GameEventInfo info)
+    private HookResult OnRoundStart(EventRoundStart @event, GameEventInfo info)
     {
         foreach (var player in PlayerPowers.Instance.GetPlayersWithPower(this))
         {

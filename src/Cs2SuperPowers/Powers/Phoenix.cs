@@ -21,7 +21,7 @@ public class Phoenix(IPlayerHud playerHud) : BasePower(playerHud)
 
     protected override void OnInitialize()
     {
-        RegisterEventHandler<EventRoundFreezeEnd>(OnRoundFreezeEnd);
+        RegisterEventHandler<EventRoundStart>(OnRoundStart);
         RegisterEventHandler<EventPlayerDeath>(OnPlayerDeath);
     }
 
@@ -51,7 +51,7 @@ public class Phoenix(IPlayerHud playerHud) : BasePower(playerHud)
         return HookResult.Continue;
     }
 
-    private HookResult OnRoundFreezeEnd(EventRoundFreezeEnd @event, GameEventInfo _)
+    private HookResult OnRoundStart(EventRoundStart @event, GameEventInfo _)
     {
         _phoenixUses = new HashSet<CCSPlayerController>();
         foreach (var player in Utilities.GetPlayers())
