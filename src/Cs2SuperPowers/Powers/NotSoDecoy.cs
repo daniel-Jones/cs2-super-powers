@@ -21,7 +21,7 @@ public class NotSoDecoy(IPlayerHud playerHud) : BasePower(playerHud)
     protected override void OnInitialize()
     {
         RegisterEventHandler<EventRoundStart>(OnRoundStart);
-        RegisterEventHandler<EventDecoyDetonate>(OnDecoyDetonate);
+        RegisterEventHandler<EventDecoyStarted>(OnDecoyStarted);
     }
 
 
@@ -43,7 +43,7 @@ public class NotSoDecoy(IPlayerHud playerHud) : BasePower(playerHud)
         return HookResult.Continue;
     }
 
-    private HookResult OnDecoyDetonate(EventDecoyDetonate @event, GameEventInfo _)
+    private HookResult OnDecoyStarted(EventDecoyStarted @event, GameEventInfo _)
     {
         var player = @event.Userid;
         if (!Ensure.Player(player).IsValid().Check() || !IsAssignedTo(player!))
