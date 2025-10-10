@@ -10,6 +10,6 @@ public interface ISuperPower
     char ChatColor { get; }
 
     void Initialize(BasePlugin pluginRef);
-    void AssignToPlayer(CCSPlayerController player);
+    void AssignToPlayer(CCSPlayerController player, bool showMessages);
     void UnassignFromPlayer(CCSPlayerController player);
 }

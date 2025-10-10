@@ -25,17 +25,21 @@ public abstract class BasePower(IPlayerHud playerHud) : ISuperPower
     
     protected abstract void OnInitialize();
 
-    public virtual void AssignToPlayer(CCSPlayerController player)
+    public virtual void AssignToPlayer(CCSPlayerController player, bool showMessages)
     {
         _playerIds.Add(player.SteamID);
-        player.PrintToChat($"You have been granted the power of {ChatColor}{Name}");
-        player.PrintToChat(Description);
+        
+        if (showMessages)
+        {
+            player.PrintToChat($"You have been granted the power of {ChatColor}{Name}");
+            player.PrintToChat(Description);
 
-        var centerMessageBuilder = new StringBuilder();
-        centerMessageBuilder.Append("<font class='fontSize-l' class='fontWeight-Bold' color='#FFFFFF'>Your superpower:</font> <br>");
-        centerMessageBuilder.Append($"<font class='fontSize-l' class='fontWeight-Bold' color='{HtmlColor}'>{Name}</font> <br>");
-        centerMessageBuilder.Append($"<font class='fontSize-s' class='fontWeight-Normal' color='#FFFFFF'>{Description}</font> <br>");
-        playerHud.ShowMessage(player, centerMessageBuilder.ToString(), TimeSpan.FromSeconds(10));
+            var centerMessageBuilder = new StringBuilder();
+            centerMessageBuilder.Append("<font class='fontSize-l' class='fontWeight-Bold' color='#FFFFFF'>Your superpower:</font> <br>");
+            centerMessageBuilder.Append($"<font class='fontSize-l' class='fontWeight-Bold' color='{HtmlColor}'>{Name}</font> <br>");
+            centerMessageBuilder.Append($"<font class='fontSize-s' class='fontWeight-Normal' color='#FFFFFF'>{Description}</font> <br>");
+            playerHud.ShowMessage(player, centerMessageBuilder.ToString(), TimeSpan.FromSeconds(10));
+        }
     }
 
     public virtual void UnassignFromPlayer(CCSPlayerController player)

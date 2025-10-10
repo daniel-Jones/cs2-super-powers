@@ -19,7 +19,7 @@ public class PlayerPowers
         _superPowers.Remove(player);
     }
     
-    public void AddPower(CCSPlayerController player, ISuperPower superPower)
+    public void AddPower(CCSPlayerController player, ISuperPower superPower, bool showMessages)
     {
         if (_superPowers.TryGetValue(player, out var existingSuperPower))
         {
@@ -27,7 +27,7 @@ public class PlayerPowers
             _superPowers.Remove(player);
         };
         
-        superPower.AssignToPlayer(player);
+        superPower.AssignToPlayer(player, showMessages);
         _superPowers.Add(player, superPower);
     }
 

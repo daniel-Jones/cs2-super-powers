@@ -1,5 +1,6 @@
 using CounterStrikeSharp.API;
 using CounterStrikeSharp.API.Core;
+using CounterStrikeSharp.API.Modules.Memory;
 using CounterStrikeSharp.API.Modules.Memory.DynamicFunctions;
 using CounterStrikeSharp.API.Modules.Utils;
 
@@ -62,13 +63,15 @@ public static class GrenadeSpawner
 
             if (grenade != null && grenade.IsValid)
             {
-                // Set the team number to match the owner for proper kill attribution
                 grenade.TeamNum = owner.TeamNum;
-                
-                // Set the owner/instigator for kill attribution
-                // This ensures that kills from this grenade are attributed to the owner
+
                 if (owner.PlayerPawn?.Value != null)
                 {
+                     Server.NextFrame(() =>
+                    {
+                        Schema.SetSchemaValue(grenade.Handle, "CBaseEntity", "m_hOwnerEntity", owner.PlayerPawn.Value.Handle);
+                    });
+                    owner.PrintToChat($"[cs2sp/debug] {owner.PlayerName} spawned a grenade at decoy position.");
                     grenade.AcceptInput("InitializeSpawnFromWorld", owner.PlayerPawn.Value, owner.PlayerPawn.Value, "");
                 }
             }

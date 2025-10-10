@@ -20,12 +20,12 @@ public class FlashProof(IPlayerHud playerHud) : BasePower(playerHud)
 
     protected override void OnInitialize()
     {
-        RegisterEventHandler<EventRoundFreezeEnd>(OnRoundFreezeEnd);
+        RegisterEventHandler<EventRoundStart>(OnRoundStart);
         RegisterEventHandler<EventPlayerBlind>(OnPlayerBlinded);
         RegisterEventHandler<EventFlashbangDetonate>(OnFlashbangDetonate);
     }
 
-    private HookResult OnRoundFreezeEnd(EventRoundFreezeEnd @event, GameEventInfo _)
+    private HookResult OnRoundStart(EventRoundStart @event, GameEventInfo _)
     {
         foreach (var player in Utilities.GetPlayers())
         {
