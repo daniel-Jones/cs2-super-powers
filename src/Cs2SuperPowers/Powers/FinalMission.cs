@@ -37,7 +37,7 @@ public class FinalMission(IPlayerHud playerHud) : BasePower(playerHud)
         var pos = player!.PlayerPawn.Value!.AbsOrigin;
         pos!.Z += 10;
 
-        var heProjectile = GrenadeSpawner.CreateGrenade(pos, QAngle.Zero, new Vector(0, 0, -10));
+        var heProjectile = GrenadeSpawner.CreateGrenade(pos, QAngle.Zero, new Vector(0, 0, -10), player.PlayerPawn.Value);
 
         if (heProjectile == null || !heProjectile.IsValid)
         {

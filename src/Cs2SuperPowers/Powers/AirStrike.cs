@@ -99,7 +99,7 @@ public class AirStrike(IPlayerHud playerHud) : BasePower(playerHud)
                 -downwardSpeed
             );
 
-            var createdGrenade = GrenadeSpawner.CreateGrenadeWithOwner(spawnPos, ang, velocity, player!);
+            var createdGrenade = GrenadeSpawner.CreateGrenade(spawnPos, ang, velocity, player.PlayerPawn.Value);
         }
         return HookResult.Continue;
     }
