@@ -17,7 +17,7 @@ public class Cs2SuperPowersPluginDependencyInjection : IPluginServiceCollection<
         services.AddScoped<ISuperPower, Rambo>();
         services.AddScoped<ISuperPower, ArmBreaker>();
         services.AddScoped<ISuperPower, Ghost>();
-        //services.AddScoped<ISuperPower, FinalMission>();
+        services.AddScoped<ISuperPower, FinalMission>();
         services.AddScoped<ISuperPower, Jackpot>();
         services.AddScoped<ISuperPower, IAmChicken>();        
         services.AddScoped<ISuperPower, OneShot>();
