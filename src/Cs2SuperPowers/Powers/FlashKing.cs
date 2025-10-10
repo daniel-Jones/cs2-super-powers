@@ -55,7 +55,7 @@ public class FlashKing(IPlayerHud playerHud) : BasePower(playerHud)
         
         var playerPawn = victim!.PlayerPawn.Value;
 
-        if (attacker != victim)
+        if (attacker != victim && attacker!.TeamNum != playerPawn!.TeamNum)
         {
             playerPawn!.FlashDuration = playerPawn!.FlashDuration * 3;    
         }
