@@ -56,6 +56,7 @@ public class RandomAssignLogic : IPowerAssignLogic
                     // Assign the same power to all players (without individual messages)
                     foreach (var player in Utilities.GetPlayers())
                     {
+                        if (player.Team == CsTeam.Spectator || player.Team == CsTeam.None) continue;
                         PlayerPowers.Instance.AddPower(player!, specialPower, showMessages: false);
                     }
                     
@@ -68,6 +69,7 @@ public class RandomAssignLogic : IPowerAssignLogic
                     // Fallback to normal assignment if special power not found
                     foreach (var player in Utilities.GetPlayers())
                     {
+                        if (player.Team == CsTeam.Spectator || player.Team == CsTeam.None) continue;
                         var randomPower = powers.OrderBy(_ => random.Next()).First();
                         PlayerPowers.Instance.AddPower(player!, randomPower, showMessages: true);
                     }
@@ -78,6 +80,7 @@ public class RandomAssignLogic : IPowerAssignLogic
                 // Normal round: random powers for each player
                 foreach (var player in Utilities.GetPlayers())
                 {
+                    if (player.Team == CsTeam.Spectator || player.Team == CsTeam.None) continue;
                     var randomPower = powers.OrderBy(_ => random.Next()).First();
                     PlayerPowers.Instance.AddPower(player!, randomPower, showMessages: true);
                 }
